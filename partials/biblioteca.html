@@ -50,12 +50,12 @@
                         <td>{{livro.colecao}}</td>
                         <td>{{livro.materia}}</td>
                         <!--<td><div class="emprestimo" ng-click="emprestimo(livro)"></div></td>-->
-                        <td><input type="checkbox" class="checkbox" ng-model="livro.selecionado"></td>
+                        <td><input type="checkbox" class="checkbox" ng-model="livro.selecionado" ng-click="checkbox()"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <input type="button" class="btn btn-info" value="Emprestar" ng-click="confirmacao()">
+            <input type="button" class="btn btn-info" value="Emprestar" ng-disabled="desabilitado" ng-click="confirmacao()">
         </div>
         <p class="alert alert-info" ng-if="livros.length == 0">Não existem livros disponíveis para empréstimo.</p>
     </div>
@@ -63,8 +63,10 @@
 </div>
 <div class="overlay" ng-show="emprestar">
     <div class="confirmacao">
-        <input type="button" class="btn btn-info" value="Emprestar" ng-click="emprestimo()">
-        <input type="button" class="btn btn-default" value="Cancelar" ng-click="cancelar()">
+        <h5>Deseja mesmo tomar emprestado o(s) livro(s): </h5>
+        <p ng-repeat="livro in livrosSelecionados"><b>Autor:</b> {{livro.autor}} - <b>Título:</b> {{livro.titulo}}</p>
+        <div class="btn btn-info" ng-click="emprestimo()">Confirmar</div>
+        <div class="btn btn-default" ng-click="cancelar()">Cancelar</div>
     </div>
 </div>
 <meu-footer></meu-footer>
